@@ -1,7 +1,9 @@
-pkg/
-mkmf.log
-Makefile
+.bundle
 conftest.dSYM/
+Gemfile.lock
 geoip.bundle
-geoip.so
 geoip.o
+geoip.so
+Makefile
+mkmf.log
+pkg/
