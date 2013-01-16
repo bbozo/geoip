@@ -17,4 +17,5 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "rake", "~> 0.9.6"
   s.add_development_dependency "rdoc", "~> 3.12"
+  s.add_development_dependency "rake-compiler", "~> 0.8.2"
 end

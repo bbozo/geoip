@@ -3,11 +3,11 @@ require 'rake/clean'
 require 'rake/testtask'
 require 'rdoc/task'
 require 'rubygems/package_task'
+require "rake/extensiontask"
 
 task :default => [:compile, :test]
 
-CLEAN.add "geoip.{o,bundle,so,obj,pdb,lib,def,exp}"
-CLOBBER.add ['Makefile', 'mkmf.log','doc']
+CLOBBER.add 'doc'
 
 RDoc::Task.new do |rdoc|
   rdoc.main = "README.md" # page to start on
@@ -26,12 +26,7 @@ Gem::PackageTask.new(spec) do |pkg|
   pkg.need_tar = true
 end
 
-desc 'compile the extension'
-task(:compile => 'Makefile') { sh 'make' }
-file('Makefile' => "geoip.c") { ruby 'extconf.rb' }
-
-task :install => [:gem] do
-  `env ARCHFLAGS="-arch i386" gem install pkg/geoip-c-0.5.0.gem -- --with-geoip-dir=/usr/local/GeoIP`
+Rake::ExtensionTask.new("geoip", spec) do |ext|
 end
 
 task(:webpage) do
