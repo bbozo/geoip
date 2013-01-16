@@ -1,4 +1,6 @@
 .bundle
+/doc
+/pkg
 conftest.dSYM/
 Gemfile.lock
 geoip.bundle
@@ -6,4 +8,3 @@ geoip.o
 geoip.so
 Makefile
 mkmf.log
-pkg/
