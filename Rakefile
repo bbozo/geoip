@@ -20,22 +20,8 @@ Rake::TestTask.new do |t|
   t.verbose = true
 end
 
-spec = Gem::Specification.new do |s|
-  s.name              = 'geoip-c'
-  s.version           = "0.8.1"
+spec = Gem::Specification.load "geoip-c.gemspec"
 
-  s.authors           = ['Ryah Dahl', 'Matt Todd', 'Andy Lindeman']
-  s.email             = ['alindeman@gmail.com', 'mtodd@highgroove.com']
-
-  s.summary           = "A Binding to the GeoIP C library"
-  s.description       = 'Generic GeoIP lookup tool. Based on the geoip_city RubyGem by Ryah Dahl'
-  s.homepage          = "http://github.com/mtodd/geoip"
-
-  s.files             = ["Rakefile", "extconf.rb", "test.rb", "geoip.c", "README.md"]
-  s.test_files        = ['test.rb']
-  s.extensions        = ['extconf.rb']
-  s.require_path      = '.'
-end
 
 Rake::GemPackageTask.new(spec) do |p|
   p.need_tar = true
