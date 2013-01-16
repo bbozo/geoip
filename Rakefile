@@ -2,7 +2,7 @@ require 'rake'
 require 'rake/clean'
 require 'rake/testtask'
 require 'rdoc/task'
-require 'rake/gempackagetask'
+require 'rubygems/package_task'
 
 task :default => [:compile, :test]
 
@@ -22,10 +22,8 @@ end
 
 spec = Gem::Specification.load "geoip-c.gemspec"
 
-
-Rake::GemPackageTask.new(spec) do |p|
-  p.need_tar = true
-  p.gem_spec = spec
+Gem::PackageTask.new(spec) do |pkg|
+  pkg.need_tar = true
 end
 
 desc 'compile the extension'
