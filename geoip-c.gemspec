@@ -14,4 +14,7 @@ Gem::Specification.new do |s|
   s.files             = ["Rakefile", "ext/geoip/extconf.rb", "ext/geoip/geoip.c", "test.rb", "README.md"]
   s.test_files        = ['test.rb']
   s.extensions        = ["ext/geoip/extconf.rb"]
+
+  s.add_development_dependency "rake", "~> 0.9.6"
+  s.add_development_dependency "rdoc", "~> 3.12"
 end

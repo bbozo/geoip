@@ -1,7 +1,7 @@
 require 'rake'
 require 'rake/clean'
 require 'rake/testtask'
-require 'rake/rdoctask'
+require 'rdoc/task'
 require 'rake/gempackagetask'
 
 task :default => [:compile, :test]
@@ -9,9 +9,9 @@ task :default => [:compile, :test]
 CLEAN.add "geoip.{o,bundle,so,obj,pdb,lib,def,exp}"
 CLOBBER.add ['Makefile', 'mkmf.log','doc']
 
-Rake::RDocTask.new do |rdoc|
-  rdoc.rdoc_files.add ['README', 'geoip.c']
-  rdoc.main = "README" # page to start on
+RDoc::Task.new do |rdoc|
+  rdoc.main = "README.md" # page to start on
+  rdoc.rdoc_files.include("README.md", "ext/geoip/geoip.c")
   rdoc.rdoc_dir = 'doc/' # rdoc output folder
 end
 
