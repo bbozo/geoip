@@ -11,8 +11,8 @@ Gem::Specification.new do |s|
   s.description       = 'Generic GeoIP lookup tool. Based on the geoip_city RubyGem by Ryan Dahl'
   s.homepage          = "http://github.com/mtodd/geoip"
 
-  s.files             = ["Rakefile", "ext/geoip/extconf.rb", "ext/geoip/geoip.c", "test.rb", "README.md"]
-  s.test_files        = ['test.rb']
+  s.files             = ["Rakefile", "ext/geoip/extconf.rb", "ext/geoip/geoip.c", "test/test_geoip.rb", "README.md"]
+  s.test_files        = ['test/test_geoip.rb']
   s.extensions        = ["ext/geoip/extconf.rb"]
 
   s.add_development_dependency "rake", "~> 0.9.6"
