@@ -1,4 +1,5 @@
 .bundle
+/data
 /doc
 /pkg
 conftest.dSYM/
