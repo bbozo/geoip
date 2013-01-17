@@ -5,7 +5,7 @@ require 'rdoc/task'
 require 'rubygems/package_task'
 require "rake/extensiontask"
 
-task :default => [:compile, :test]
+task :default => [:test]
 
 CLOBBER.add 'doc', 'data'
 
