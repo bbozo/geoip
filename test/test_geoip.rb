@@ -122,6 +122,10 @@ class GeoIPCityTest < Test::Unit::TestCase
     assert_look_up(db, '201.85.50.148', :city, 'São Paulo')
   end
 
+  def test_hong_kong_segfault
+    db = GeoIP::City.new(@dbfile, :filesystem, true)
+    assert_look_up(db, "61.93.14.4", :country_name, "Hong Kong")
+  end
 end
 
 class GeoIPOrgTest < Test::Unit::TestCase
@@ -168,5 +172,4 @@ class GeoIPOrgTest < Test::Unit::TestCase
       GeoIP::Organization.new('/supposed-to-fail')
     end
   end
-
 end
