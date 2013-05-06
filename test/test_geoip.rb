@@ -19,12 +19,20 @@ end
 
 class GeoIPTest < Test::Unit::TestCase
 
-  def setup
-    @ip = "24.24.24.24"
-    @ipnum = 16777216*24 + 65536*24 + 256*24 + 24
+  def ip_address_to_int address
+    ( o1, o2, o3, o4 ) = address.split('.').map(&:to_i)
 
+    16777216 * o1 + 65536 * o2 + 256 * o3 + o4
+  end
+
+  def setup
+    # 29690,"US","NY","East Syracuse","13057",43.0892,-76.0250,555,315
+    @ip = "24.24.24.24"
+    @ipnum = ip_address_to_int @ip
+
+    # 
     @large_ip = "245.245.245.245"
-    @large_ipnum = 16777216*245 + 65536*245 + 256*245 + 245
+    @large_ipnum = ip_address_to_int @large_ip
   end
 
   # addr_to_num
@@ -88,23 +96,23 @@ else
 
       h = db.look_up('24.24.24.24')
       assert_kind_of Hash, h
-      assert_equal 'New York', h[:city]
+      assert_equal 'East Syracuse', h[:city]
       assert_equal 'United States', h[:country_name]
     end
 
     def test_construction_index
       db = GeoIP::City.new(@dbfile, :index)
-      assert_look_up(db, '24.24.24.24', :city, 'New York')
+      assert_look_up(db, '24.24.24.24', :city, 'East Syracuse')
     end
 
     def test_construction_filesystem
       db = GeoIP::City.new(@dbfile, :filesystem)
-      assert_look_up(db, '24.24.24.24', :city, 'New York')
+      assert_look_up(db, '24.24.24.24', :city, 'East Syracuse')
     end
 
     def test_construction_memory
       db = GeoIP::City.new(@dbfile, :memory)
-      assert_look_up(db, '24.24.24.24', :city, 'New York')
+      assert_look_up(db, '24.24.24.24', :city, 'East Syracuse')
     end
 
     def test_hong_kong_segfault
@@ -114,7 +122,7 @@ else
 
     def test_construction_filesystem_check
       db = GeoIP::City.new(@dbfile, :filesystem, true)
-      assert_look_up(db, '24.24.24.24', :city, 'New York')
+      assert_look_up(db, '24.24.24.24', :city, 'East Syracuse')
     end
 
     def test_bad_db_file
